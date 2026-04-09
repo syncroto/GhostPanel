@@ -1,0 +1,18 @@
+{
+  "name": "gpanel-node-helper",
+  "version": "1.0.0",
+  "description": "GPanel WebSocket helper — terminal interativo e streaming de logs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js"
+  },
+  "dependencies": {
+    "node-pty": "^1.0.0",
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
