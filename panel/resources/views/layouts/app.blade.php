@@ -106,7 +106,7 @@
                         ['route' => 'dashboard',       'match' => 'dashboard',   'label' => 'Dashboard',  'admin' => false],
                         ['route' => 'sites.index',     'match' => 'sites.*',     'label' => 'Sites',      'admin' => false],
                         ['route' => 'databases.index', 'match' => 'databases.*', 'label' => 'Bancos',   'admin' => true],
-                        ['route' => 'firewall.index',  'match' => 'firewall.*',  'label' => 'Firewall',   'admin' => true],
+                        <!-- ['route' => 'firewall.index',  'match' => 'firewall.*',  'label' => 'Firewall',   'admin' => true], -->
                         ['route' => 'backups.index',   'match' => 'backups.*',   'label' => 'Backups',    'admin' => true],
                         ['route' => 'users.index',     'match' => 'users.*',     'label' => 'Usuários',   'admin' => true],
                     ];
