@@ -24,7 +24,7 @@
     </div>
 @endif
 
-<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
     <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700">
         <div>
             <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Configuração Nginx</p>
@@ -50,7 +50,7 @@
                 Cancelar
             </a>
             <button type="submit"
-                    class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                    class="px-5 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full transition-colors">
                 Salvar e Recarregar Nginx
             </button>
         </div>

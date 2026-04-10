@@ -27,7 +27,7 @@
         </span>
     </div>
     <button @click="showForm = !showForm"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors">
+            class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
@@ -37,7 +37,7 @@
 
 <!-- Formulário -->
 <div x-show="showForm" x-cloak x-transition
-     class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+     class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-6 mb-6">
     <h2 class="text-base font-semibold text-gray-800 dark:text-white mb-5">Adicionar regra</h2>
     <form method="POST" action="{{ route('firewall.store') }}">
         @csrf
@@ -45,18 +45,18 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Porta</label>
                 <input type="number" name="port" value="{{ old('port') }}" required min="1" max="65535" placeholder="80"
-                       class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                       class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Protocolo</label>
-                <select name="protocol" class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select name="protocol" class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                     <option value="tcp">TCP</option>
                     <option value="udp">UDP</option>
                 </select>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Ação</label>
-                <select name="action" class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select name="action" class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                     <option value="allow">Allow</option>
                     <option value="deny">Deny</option>
                 </select>
@@ -64,7 +64,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">De IP (opcional)</label>
                 <input type="text" name="from" value="{{ old('from') }}" placeholder="0.0.0.0/0"
-                       class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                       class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
         </div>
         <div class="flex gap-3 mt-5">
@@ -73,7 +73,7 @@
                 Cancelar
             </button>
             <button type="submit"
-                    class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                    class="px-5 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full transition-colors">
                 Adicionar regra
             </button>
         </div>
@@ -88,7 +88,7 @@
         <input type="hidden" name="port" value="{{ $port }}">
         <input type="hidden" name="protocol" value="tcp">
         <input type="hidden" name="action" value="allow">
-        <button type="submit" class="w-full px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+        <button type="submit" class="w-full px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-brand-500 hover:text-brand-500 dark:hover:text-brand-400 transition-colors">
             Allow {{ $label }} ({{ $port }})
         </button>
     </form>
@@ -97,11 +97,11 @@
 
 <!-- Lista de regras -->
 @if(empty($rules))
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-10 text-center">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-10 text-center">
         <p class="text-gray-500 dark:text-gray-400 text-sm">Nenhuma regra encontrada ou UFW inativo.</p>
     </div>
 @else
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
         <table class="w-full">
             <thead>
                 <tr class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
@@ -112,7 +112,7 @@
                     <th class="px-5 py-3"></th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+            <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                 @foreach($rules as $rule)
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                     <td class="px-5 py-3 text-sm text-gray-500 dark:text-gray-400">{{ $rule['num'] }}</td>

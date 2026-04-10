@@ -49,7 +49,7 @@
     @endif
 
     {{-- Site header card --}}
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 mb-4">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5 mb-4">
         <div class="flex items-start justify-between">
             <div>
                 <div class="flex items-center gap-2 mb-1">
@@ -94,7 +94,7 @@
     </div>
 
     {{-- Tabs --}}
-    <div class="flex flex-wrap gap-1 mb-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-1.5">
+    <div class="flex flex-wrap gap-1 mb-4 bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-1.5">
         @foreach([
             ['info','Info','M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
             ['terminal','Terminal','M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'],
@@ -116,9 +116,9 @@
     </div>
 
     {{-- ── TAB: Info ── --}}
-    <div x-show="tab==='info'" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+    <div x-show="tab==='info'" class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5">
         <h2 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Detalhes técnicos</h2>
-        <div class="space-y-0 text-sm divide-y divide-gray-100 dark:divide-gray-700">
+        <div class="space-y-0 text-sm divide-y divide-gray-50 dark:divide-gray-700">
             <!-- @if($site->nginx_config_path)
             <div class="flex justify-between items-center py-2.5"><span class="text-gray-500">Config Nginx</span><code class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded">{{ $site->nginx_config_path }}</code></div>
             @endif -->
@@ -167,7 +167,7 @@
     </div>
 
     {{-- ── TAB: Arquivos — File Manager ── --}}
-    <div x-show="tab==='files'" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden" style="min-height: 520px;">
+    <div x-show="tab==='files'" class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden" style="min-height: 520px;">
 
         {{-- Toolbar --}}
         <div class="flex items-center gap-2 px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60 flex-wrap">
@@ -524,7 +524,7 @@
 
         {{-- Formulário criar banco inline --}}
         @php $dbCount = $site->databases->count(); $dbLimit = auth()->user()->isAdmin() ? 999 : (auth()->user()->db_limit ?? 3); @endphp
-        <div x-data="{ showDbForm: false }" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 mb-3">
+        <div x-data="{ showDbForm: false }" class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-4 mb-3">
             <div class="flex items-center justify-between">
                 <div>
                     <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Bancos de dados</span>
@@ -578,7 +578,7 @@
             </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800">
         @if($site->databases->isEmpty())
         <div class="p-8 text-center">
             <p class="text-sm text-gray-400">Nenhum banco vinculado a este site ainda.</p>
@@ -591,7 +591,7 @@
                 <th class="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase">Tipo</th>
                 <th class="px-4 py-3"></th>
             </tr></thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+            <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                 @foreach($site->databases as $db)
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                     <td class="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{{ $db->name }}</td>
@@ -661,7 +661,7 @@
 
     {{-- ── TAB: Cron ── --}}
     <div x-show="tab==='cron'" class="space-y-4">
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5">
             <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Novo Cron Job</h3>
             <div class="mb-4">
                 <label class="block text-xs font-medium text-gray-500 mb-1.5">Template</label>
@@ -704,7 +704,7 @@
             </button>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
             <div class="px-5 py-3 border-b border-gray-200 dark:border-gray-700">
                 <p class="text-sm font-semibold text-gray-700 dark:text-gray-300">Jobs ativos — <span x-text="cronJobs.length"></span></p>
             </div>
@@ -721,7 +721,7 @@
                             <th class="w-10 px-2"></th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                    <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                         <template x-for="job in cronJobs" :key="job.id">
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                                 <td class="px-4 py-3"><code class="text-xs font-mono text-brand-600 bg-brand-50 dark:bg-brand-900/20 px-2 py-0.5 rounded" x-text="job.schedule"></code></td>
@@ -742,7 +742,7 @@
 
     {{-- ── TAB: Nginx / Vhost ── --}}
     <div x-show="tab==='vhost'">
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
             <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                 <code class="text-xs text-gray-500" x-text="vhostPath||'{{ $site->nginx_config_path }}'"></code>
                 <div class="flex items-center gap-3">
@@ -766,7 +766,7 @@
 
     {{-- ── TAB: Segurança ── --}}
     <div x-show="tab==='security'" class="space-y-4">
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5">
             <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Controle de Acesso por IP</h3>
             <div class="flex flex-wrap gap-4 mb-4">
                 <label class="flex items-center gap-2 cursor-pointer">
@@ -789,7 +789,7 @@
             </div>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">Proteção por Senha (HTTP Basic Auth)</h3>
                 <label class="relative inline-flex items-center cursor-pointer">
@@ -831,7 +831,7 @@
         </div>
 
         {{-- Header --}}
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-5">
             <div class="flex items-start justify-between">
                 <div>
                     <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">Backups do Site</h3>
@@ -846,7 +846,7 @@
         </div>
 
         {{-- Lista --}}
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
             <template x-if="bkList.length === 0">
                 <div class="p-10 text-center">
                     <svg class="w-10 h-10 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
@@ -864,7 +864,7 @@
                             <th class="px-5 py-3"></th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                    <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                         <template x-for="bk in bkList" :key="bk.id">
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                                 <td class="px-5 py-3 text-sm font-mono text-gray-700 dark:text-gray-300" x-text="bk.filename"></td>

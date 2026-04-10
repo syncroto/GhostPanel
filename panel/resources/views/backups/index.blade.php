@@ -27,13 +27,13 @@
         @csrf
         <input type="hidden" name="target" value="{{ $target }}">
         <button type="submit"
-                class="w-full p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-indigo-500 transition-colors text-left group">
+                class="w-full p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-brand-500 transition-colors text-left group">
             <div class="flex items-center gap-3 mb-2">
                 <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
                 </svg>
-                <span class="font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{{ $label }}</span>
+                <span class="font-semibold text-gray-900 dark:text-white group-hover:text-brand-500 dark:group-hover:text-brand-400">{{ $label }}</span>
             </div>
             <p class="text-xs text-gray-500 dark:text-gray-400">{{ $desc }}</p>
         </button>
@@ -48,7 +48,7 @@
 </div>
 
 @if(empty($backups))
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-12 text-center">
         <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                   d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
@@ -57,7 +57,7 @@
         <p class="text-xs text-gray-400 mt-1">Clique em um dos botões acima para criar o primeiro backup.</p>
     </div>
 @else
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
         <table class="w-full">
             <thead>
                 <tr class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
@@ -67,7 +67,7 @@
                     <th class="px-5 py-3"></th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+            <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                 @foreach($backups as $backup)
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                     <td class="px-5 py-4">
@@ -83,7 +83,7 @@
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-1 justify-end">
                             <a href="{{ route('backups.download', $backup['name']) }}"
-                               class="p-1.5 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded" title="Download">
+                               class="p-1.5 text-gray-400 hover:text-brand-500 dark:hover:text-brand-400 rounded" title="Download">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>

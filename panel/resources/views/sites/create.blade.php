@@ -33,7 +33,7 @@
     }
 }">
 
-<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+<div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-6">
     <form method="POST" action="{{ route('sites.store') }}" novalidate>
         @csrf
 
@@ -51,7 +51,7 @@
                 Domínio <span class="text-red-500">*</span>
             </label>
             <input type="text" name="domain" x-model="domain" placeholder="exemplo.com"
-                   class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('domain') border-red-500 @enderror">
+                   class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 @error('domain') border-red-500 @enderror">
             <p class="mt-1 text-xs text-gray-500">Sem http:// — apenas o domínio (ex: meusite.com)</p>
         </div>
 
@@ -87,7 +87,7 @@
         {{-- Versão PHP --}}
         <div class="mb-5" x-show="type === 'php' || type === 'wordpress'" x-cloak>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Versão do PHP</label>
-            <select name="php_version" class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <select name="php_version" class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option value="8.1">PHP 8.1</option>
                 <option value="8.2" selected>PHP 8.2 (recomendado)</option>
                 <option value="8.3">PHP 8.3</option>
@@ -97,7 +97,7 @@
         {{-- Versão Node.js --}}
         <div class="mb-5" x-show="type === 'nodejs'" x-cloak>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Versão do Node.js</label>
-            <select name="node_version" class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <select name="node_version" class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option value="18">Node.js 18 LTS</option>
                 <option value="20" selected>Node.js 20 LTS (recomendado)</option>
                 <option value="22">Node.js 22</option>
@@ -112,7 +112,7 @@
             <div class="flex gap-2">
                 <input type="number" name="port" x-model="port" @blur="checkPort()" @input="portStatus=null"
                        placeholder="Ex: 3000" min="1024" max="65535"
-                       class="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 @error('port') border-red-500 @enderror">
+                       class="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 @error('port') border-red-500 @enderror">
                 <button type="button" @click="checkPort()"
                         class="px-3 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">
                     <span x-text="portChecking ? '...' : 'Verificar'"></span>
@@ -133,7 +133,7 @@
         <div class="mb-6">
             <div class="flex items-center justify-between mb-1.5">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Diretório Root</label>
-                <button type="button" @click="customPath = !customPath" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline">
+                <button type="button" @click="customPath = !customPath" class="text-xs text-brand-500 dark:text-indigo-400 hover:underline">
                     <span x-text="customPath ? 'Usar padrão' : 'Personalizar'"></span>
                 </button>
             </div>
@@ -141,7 +141,7 @@
                 <span x-text="rootPath || '/var/www/sites/{domain}/public'"></span>
             </div>
             <input x-show="customPath" type="text" name="root_path" :placeholder="rootPath"
-                   class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                   class="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
             <input x-show="!customPath" type="hidden" name="root_path" :value="rootPath">
         </div>
 
@@ -152,7 +152,7 @@
                 Cancelar
             </a>
             <button type="submit"
-                    class="flex-1 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors">
+                    class="flex-1 py-2.5 px-4 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white font-semibold rounded-full transition-colors">
                 Criar Site
             </button>
         </div>

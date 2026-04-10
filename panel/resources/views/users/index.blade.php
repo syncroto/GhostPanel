@@ -21,7 +21,7 @@
 <div class="flex items-center justify-between mb-6">
     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $users->count() }} usuário(s) cadastrado(s)</p>
     <button @click="showForm = !showForm; editUser = null"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors">
+            class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
@@ -31,7 +31,7 @@
 
 {{-- Formulário criar/editar --}}
 <div x-show="showForm" x-cloak x-transition
-     class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-6">
+     class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-6 mb-6">
 
     <h2 class="text-base font-semibold text-gray-800 dark:text-white mb-5"
         x-text="editUser ? 'Editar usuário' : 'Criar usuário'"></h2>
@@ -44,22 +44,22 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Nome</label>
                     <input type="text" name="name" value="{{ old('name') }}" required
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">E-mail</label>
                     <input type="email" name="email" value="{{ old('email') }}" required
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Senha</label>
                     <input type="password" name="password" required placeholder="Mínimo 8 caracteres"
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Tipo</label>
                     <select name="role" x-model="newRole"
-                            class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                         <option value="user">Usuário — acesso a sites específicos</option>
                         <option value="admin">Administrador — acesso total</option>
                     </select>
@@ -72,7 +72,7 @@
                     Limite de bancos de dados por site
                 </label>
                 <input type="number" name="db_limit" value="3" min="1" max="50"
-                       class="w-32 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                       class="w-32 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <p class="text-xs text-gray-400 mt-1">Máximo de bancos que este usuário pode criar por site.</p>
             </div>
 
@@ -83,7 +83,7 @@
                     @foreach(\App\Models\Site::orderBy('domain')->get() as $site)
                     <label class="flex items-center gap-2.5 p-2.5 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer">
                         <input type="checkbox" name="site_ids[]" value="{{ $site->id }}"
-                               class="rounded text-indigo-600">
+                               class="rounded text-brand-500">
                         <span class="text-sm text-gray-700 dark:text-gray-300">{{ $site->domain }}</span>
                     </label>
                     @endforeach
@@ -97,7 +97,7 @@
                 <button type="button" @click="showForm = false"
                         class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">Cancelar</button>
                 <button type="submit"
-                        class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg">Criar usuário</button>
+                        class="px-5 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full">Criar usuário</button>
             </div>
         </form>
     </template>
@@ -110,22 +110,22 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Nome</label>
                     <input type="text" name="name" :value="editUser.name" required
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">E-mail</label>
                     <input type="email" name="email" :value="editUser.email" required
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Nova senha <span class="text-gray-400">(deixe em branco para manter)</span></label>
                     <input type="password" name="password" placeholder="Mínimo 8 caracteres"
-                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                           class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Tipo</label>
                     <select name="role" x-model="editUser.role"
-                            class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                         <option value="user">Usuário — acesso a sites específicos</option>
                         <option value="admin">Administrador — acesso total</option>
                     </select>
@@ -133,7 +133,7 @@
                 <div class="flex items-center gap-2">
                     <input type="hidden" name="is_active" value="0">
                     <input type="checkbox" name="is_active" value="1" id="edit_is_active"
-                           :checked="editUser.is_active" class="rounded text-indigo-600">
+                           :checked="editUser.is_active" class="rounded text-brand-500">
                     <label for="edit_is_active" class="text-sm text-gray-700 dark:text-gray-300">Usuário ativo</label>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                     <label class="flex items-center gap-2.5 p-2.5 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer">
                         <input type="checkbox" name="site_ids[]" value="{{ $site->id }}"
                                :checked="editSites.includes({{ $site->id }})"
-                               class="rounded text-indigo-600">
+                               class="rounded text-brand-500">
                         <span class="text-sm text-gray-700 dark:text-gray-300">{{ $site->domain }}</span>
                     </label>
                     @endforeach
@@ -157,14 +157,14 @@
                 <button type="button" @click="showForm = false; editUser = null"
                         class="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">Cancelar</button>
                 <button type="submit"
-                        class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg">Salvar</button>
+                        class="px-5 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full">Salvar</button>
             </div>
         </form>
     </template>
 </div>
 
 {{-- Lista de usuários --}}
-<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
     <table class="w-full">
         <thead>
             <tr class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
@@ -175,7 +175,7 @@
                 <th class="px-5 py-3"></th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+        <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
             @foreach($users as $user)
             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                 <td class="px-5 py-4">

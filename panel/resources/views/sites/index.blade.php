@@ -9,7 +9,7 @@
     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $sites->count() }} site(s) cadastrado(s)</p>
     @if(auth()->user()->isAdmin())
     <a href="{{ route('sites.create') }}"
-       class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors">
+       class="inline-flex items-center gap-2 px-4 py-2 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white text-sm font-semibold rounded-full transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
         </svg>
@@ -19,7 +19,7 @@
 </div>
 
 @if($sites->isEmpty())
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 p-12 text-center">
         <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
         </svg>
@@ -27,7 +27,7 @@
         <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-1">Nenhum site ainda</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Crie seu primeiro site e o GPanel configurará tudo automaticamente.</p>
         <a href="{{ route('sites.create') }}"
-           class="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors">
+           class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-500 shadow-sm shadow-brand-500/20 hover:bg-brand-600 hover:-translate-y-0.5 transition-all text-white font-semibold rounded-full transition-colors">
             Criar primeiro site
         </a>
         @else
@@ -36,7 +36,7 @@
         @endif
     </div>
 @else
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 overflow-hidden">
         <table class="w-full">
             <thead>
                 <tr class="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
@@ -48,13 +48,13 @@
                     <th class="px-5 py-3"></th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+            <tbody class="divide-y divide-gray-50 dark:divide-gray-700">
                 @foreach($sites as $site)
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-2">
                             <a href="{{ route('sites.show', $site) }}"
-                               class="font-medium text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">
+                               class="font-medium text-gray-900 dark:text-white hover:text-brand-500 dark:hover:text-brand-400">
                                 {{ $site->domain }}
                             </a>
                             <a href="http://{{ $site->domain }}" target="_blank"
