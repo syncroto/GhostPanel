@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login â€” GPanel</title>
+    <title>Login - Ghost Panel</title>
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +52,7 @@
             </svg>
         </div>
         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Bem-vindo de volta</h1>
-        <p class="text-gray-500 text-sm mt-2">Faça login no seu painel GPanel</p>
+        <p class="text-gray-500 text-sm mt-2">Faça login no seu painel Ghost Panel</p>
     </div>
 
     <div class="bg-white rounded-3xl p-8 shadow-[0px_4px_24px_rgba(0,0,0,0.04)] border border-gray-100">

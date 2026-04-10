@@ -1,8 +1,13 @@
 {
     "name": "gpanel/gpanel",
-    "description": "GPanel — Painel de Gerenciamento de Servidores",
+    "description": "Ghost Panel — Painel de Gerenciamento de Servidores",
     "type": "project",
-    "keywords": ["server", "panel", "hosting", "management"],
+    "keywords": [
+        "server",
+        "panel",
+        "hosting",
+        "management"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
