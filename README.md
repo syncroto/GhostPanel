@@ -13,6 +13,10 @@ Gerencie PHP, Node.js, Python, WordPress, MySQL, SSL, Firewall e Backups direto 
 
 </div>
 
+<p align="center">
+  <img src="dashboard-images/preview.gif" width="800" alt="GhostPanel Preview" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);" />
+</p>
+
 ---
 
 ## Por que criei isso?
