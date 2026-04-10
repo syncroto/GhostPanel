@@ -619,28 +619,15 @@ install_gpanel() {
   fi
   log "Laravel base instalado ✓"
 
-  # ── Passo 2: Clona o repositório GPanel e sobrescreve os arquivos customizados ──
-  info "Clonando customizações GPanel do repositório..."
-  local TMP_CLONE
-  TMP_CLONE=$(mktemp -d)
-  git clone --depth 1 "$GPANEL_REPO" "$TMP_CLONE"
-
-  # Detecta estrutura do repositório
-  if [[ -d "${TMP_CLONE}/panel" ]]; then
-    # Estrutura padrão: repo tem subpastas panel/, scripts/, node-helper/
-    info "Estrutura detectada: repo com subpastas (panel/, scripts/, node-helper/)"
-    # Copia apenas os arquivos customizados por cima do Laravel base
-    cp -rf "${TMP_CLONE}/panel/." "${GPANEL_DIR}/panel/"
-    [[ -d "${TMP_CLONE}/scripts" ]]     && cp -rf "${TMP_CLONE}/scripts"     "${GPANEL_DIR}/scripts"
-    [[ -d "${TMP_CLONE}/node-helper" ]] && cp -rf "${TMP_CLONE}/node-helper" "${GPANEL_DIR}/node-helper"
-  else
-    # Repo contém apenas os arquivos do panel diretamente na raiz
-    info "Estrutura detectada: arquivos do panel na raiz do repo"
-    cp -rf "${TMP_CLONE}/." "${GPANEL_DIR}/panel/"
-  fi
-
-  rm -rf "$TMP_CLONE"
-  log "Customizações aplicadas ✓"
+  # ── Passo 2: Sincroniza o repositório GPanel nativamente para suportar updates futuros ──
+  info "Baixando customizações GPanel via Git..."
+  cd "${GPANEL_DIR}"
+  git init -q
+  git remote add origin "$GPANEL_REPO"
+  git fetch --all -q
+  git reset --hard origin/main -q
+  git branch -M main -q
+  log "Repositório Git conectado e customizações aplicadas ✓"
 
   cd "${GPANEL_DIR}/panel"
 
