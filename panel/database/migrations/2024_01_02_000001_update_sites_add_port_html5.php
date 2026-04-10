@@ -16,6 +16,10 @@ return new class extends Migration
     {
         // SQLite não suporta ALTER COLUMN — precisa recriar a tabela
         DB::statement('PRAGMA foreign_keys=OFF');
+        
+        // Remove o índice único antigo para não dar conflito na nova tabela
+        DB::statement('DROP INDEX IF EXISTS sites_domain_unique');
+        
         DB::statement('ALTER TABLE sites RENAME TO _sites_old');
 
         Schema::create('sites', function (Blueprint $table) {
