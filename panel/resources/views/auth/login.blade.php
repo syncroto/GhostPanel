@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — GPanel</title>
+    <title>Login â€” GPanel</title>
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,8 +51,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
             </svg>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Welcome back</h1>
-        <p class="text-gray-500 text-sm mt-2">Sign in to your GPanel workspace</p>
+        <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Bem-vindo de volta</h1>
+        <p class="text-gray-500 text-sm mt-2">Faça login no seu painel GPanel</p>
     </div>
 
     <div class="bg-white rounded-3xl p-8 shadow-[0px_4px_24px_rgba(0,0,0,0.04)] border border-gray-100">
@@ -78,14 +78,14 @@
             @csrf
 
             <div class="mb-5">
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Email address</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Endereço de e-mail</label>
                 <input type="email" name="email" value="{{ old('email') }}" required autofocus
                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all">
             </div>
 
             <div class="mb-8">
                 <div class="flex items-center justify-between mb-2">
-                    <label class="block text-sm font-semibold text-gray-700">Password</label>
+                    <label class="block text-sm font-semibold text-gray-700">Senha</label>
                 </div>
                 <input type="password" name="password" required
                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all">
@@ -111,3 +111,4 @@
 
 </body>
 </html>
+

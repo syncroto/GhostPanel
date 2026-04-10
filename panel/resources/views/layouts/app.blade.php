@@ -103,7 +103,7 @@
                 <div class="flex items-center gap-1.5 p-1 bg-gray-100/50 dark:bg-gray-800/50 rounded-full border border-gray-200 dark:border-gray-700/50">
                     @php
                     $navItems = [
-                        ['route' => 'dashboard',       'match' => 'dashboard',   'label' => 'Overview',  'admin' => false],
+                        ['route' => 'dashboard',       'match' => 'dashboard',   'label' => 'Dashboard',  'admin' => false],
                         ['route' => 'sites.index',     'match' => 'sites.*',     'label' => 'Sites',      'admin' => false],
                         ['route' => 'databases.index', 'match' => 'databases.*', 'label' => 'Bancos',   'admin' => true],
                         ['route' => 'firewall.index',  'match' => 'firewall.*',  'label' => 'Firewall',   'admin' => true],
@@ -202,8 +202,8 @@
     <!-- Flash Messages -->
     <div class="">
         @if(session('success'))
-            <div class="mb-6 flex items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-5 py-4 rounded-xl text-sm shadow-sm"
-                 x-data x-init="setTimeout(() => $el.remove(), 5000)">
+            <div x-data="{ show: true }" x-show="show" x-transition.duration.500ms x-init="setTimeout(() => show = false, 5000)"
+                 class="mb-6 flex items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-5 py-4 rounded-xl text-sm shadow-sm">
                 <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                 </svg>
@@ -211,8 +211,8 @@
             </div>
         @endif
         @if(session('info'))
-            <div class="mb-6 flex items-center gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 px-5 py-4 rounded-xl text-sm shadow-sm"
-                 x-data x-init="setTimeout(() => $el.remove(), 5000)">
+            <div x-data="{ show: true }" x-show="show" x-transition.duration.500ms x-init="setTimeout(() => show = false, 5000)"
+                 class="mb-6 flex items-center gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 px-5 py-4 rounded-xl text-sm shadow-sm">
                 <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                 </svg>
@@ -220,7 +220,8 @@
             </div>
         @endif
         @if(session('error'))
-            <div class="mb-6 flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-5 py-4 rounded-xl text-sm shadow-sm">
+            <div x-data="{ show: true }" x-show="show" x-transition.duration.500ms x-init="setTimeout(() => show = false, 5000)"
+                 class="mb-6 flex items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-5 py-4 rounded-xl text-sm shadow-sm">
                 <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
                 </svg>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Dashboard')
 @section('header', 'Dashboard')
@@ -66,10 +66,10 @@
         </div>
     </div>
 
-    {{-- Memória RAM --}}
+    {{-- MemÃ³ria RAM --}}
     <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 relative overflow-hidden group">
         <div class="flex items-center justify-between mb-4">
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Memória RAM</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">MemÃ³ria RAM</span>
             <div class="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-brand-500 group-hover:scale-110 transition-transform">
                 <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
@@ -90,7 +90,7 @@
     {{-- Uptime --}}
     <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 relative overflow-hidden group">
         <div class="flex items-center justify-between mb-4">
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Server Uptime</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Uptime do Servidor</span>
             <div class="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-brand-500 group-hover:scale-110 transition-transform">
                 <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -120,8 +120,8 @@
     <div class="lg:col-span-2 bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 flex flex-col">
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Recent Sites</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">All your hosted projects in one dashboard.</p>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Projetos Recentes</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Todos os seus projetos de hospedagem em um só lugar.</p>
             </div>
             <a href="{{ route('sites.index') ?? '#' }}" class="p-2 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 hover:text-gray-900 hover:border-gray-300 dark:hover:text-white transition-all">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -137,7 +137,7 @@
                 </div>
                 <p class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-4">You don't have any sites yet.</p>
                 <a href="{{ route('sites.create') ?? '#' }}" class="px-5 py-2.5 bg-brand-500 text-white rounded-full font-medium text-sm hover:bg-brand-600 transition-colors shadow-md shadow-brand-500/20">
-                    Create your first site
+                    Criar seu primeiro site
                 </a>
             </div>
         @else
@@ -145,7 +145,7 @@
                 <!-- Table Header Replica -->
                 <div class="flex items-center text-xs font-semibold text-gray-400 dark:text-gray-500 pb-3 border-b border-gray-100 dark:border-gray-800 mb-4 px-2">
                     <div class="w-12">No</div>
-                    <div class="flex-1">Domain Name</div>
+                    <div class="flex-1">Nome do Domínio</div>
                     <div class="w-24 text-right">HTTPS</div>
                     <div class="w-32 text-right">Status</div>
                 </div>
@@ -199,7 +199,7 @@
 
     {{-- System Services Area --}}
     <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Service Health</h3>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Status dos Serviços</h3>
         
         <div class="space-y-5">
             @if(isset($services) && is_iterable($services))
@@ -212,7 +212,7 @@
                         </div>
                         <div>
                             <span class="text-sm font-bold text-gray-900 dark:text-white block">{{ $service['label'] ?? ucfirst($name) }}</span>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">Core Daemon</span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">Daemon Central</span>
                         </div>
                     </div>
                     
@@ -244,3 +244,4 @@
 </div>
 
 @endsection
+
