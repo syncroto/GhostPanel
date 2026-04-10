@@ -69,7 +69,7 @@
     {{-- MemÃ³ria RAM --}}
     <div class="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-[0px_4px_24px_rgba(0,0,0,0.02)] border border-gray-100 dark:border-gray-800 relative overflow-hidden group">
         <div class="flex items-center justify-between mb-4">
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">MemÃ³ria RAM</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Memória RAM</span>
             <div class="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-brand-500 group-hover:scale-110 transition-transform">
                 <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
@@ -159,7 +159,7 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900 dark:text-white text-sm group-hover:text-brand-500 transition-colors cursor-pointer">{{ $site->domain ?? 'domain.com' }}</p>
+                                <a href="{{ route('sites.show', $site->domain) }}" class="font-bold text-gray-900 dark:text-white text-sm group-hover:text-brand-500 transition-colors cursor-pointer">{{ $site->domain ?? 'domain.com' }}</a>
                                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ is_object($site) && method_exists($site, 'getTypeLabel') ? $site->getTypeLabel() : 'Standard' }}</p>
                             </div>
                         </div>
