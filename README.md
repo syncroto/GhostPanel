@@ -128,12 +128,6 @@ http://SEU_IP:8442
 
 O wizard de setup será exibido **uma única vez** para criar o primeiro administrador.
 
-### Instalar phpMyAdmin (opcional)
-
-```bash
-sudo bash /gpanel/scripts/install-phpmyadmin.sh
-```
-
 ### Hardening PHP (recomendado)
 
 ```bash

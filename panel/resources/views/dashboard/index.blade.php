@@ -2,18 +2,14 @@
 
 @section('title', 'Dashboard')
 @section('header', 'Dashboard')
-@section('subheader', 'Good morning, ' . explode(' ', trim(auth()->user()->name ?? 'User'))[0] . '!')
+@section('subheader', 'Bem vindo(a), ' . explode(' ', trim(auth()->user()->name ?? 'User'))[0] . '!')
 
 @section('actions')
     <!-- Example actions area matching the Examples share/export buttons -->
     <div class="flex items-center gap-2">
-        <button class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-medium rounded-full transition-colors shadow-sm shadow-brand-500/20">
-            Export Data
-        </button>
-        <button class="px-5 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
-            <svg class="w-4 h-4 inline-block mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-            Add Widget
-        </button>
+        <a href="https://raiusoft.com.br" target="_blank" class="px-5 py-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-sm font-medium rounded-full hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm">
+            Raiu Soft
+        </a>
     </div>
 @endsection
 
