@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\CheckSetupComplete;
 use App\Http\Middleware\RequireAdmin;
+use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Middleware global de setup — verifica se o painel foi configurado
         $middleware->web(append: [
             CheckSetupComplete::class,
+            SecurityHeaders::class,
         ]);
 
         // Alias para uso em rotas

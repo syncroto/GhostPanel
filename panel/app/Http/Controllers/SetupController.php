@@ -56,6 +56,7 @@ class SetupController extends Controller
 
         // Faz login automático após setup
         auth()->login($user);
+        session()->regenerate();
 
         return redirect()->route('dashboard')->with(
             'success',

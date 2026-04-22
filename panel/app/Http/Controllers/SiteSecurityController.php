@@ -12,6 +12,8 @@ class SiteSecurityController extends Controller
 
     public function update(Request $request, Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
+
         $validated = $request->validate([
             'ip_mode'      => 'required|in:off,whitelist,blacklist',
             'ips'          => 'nullable|string|max:2000',
@@ -20,9 +22,13 @@ class SiteSecurityController extends Controller
             'auth_pass'    => 'nullable|string|max:128',
         ]);
 
-        $ips = array_values(array_filter(
-            array_map('trim', explode("\n", $validated['ips'] ?? ''))
-        ));
+        $rawIps = array_map('trim', explode("\n", $validated['ips'] ?? ''));
+        $ips    = array_values(array_filter($rawIps, function (string $ip): bool {
+            if ($ip === '') return false;
+            // Aceita IP simples ou CIDR (ex: 192.168.1.0/24)
+            [$addr] = explode('/', $ip, 2);
+            return (bool) filter_var($addr, FILTER_VALIDATE_IP);
+        }));
 
         $existing = $site->security_config ?? [];
 
@@ -53,7 +59,11 @@ class SiteSecurityController extends Controller
             $this->cmd->runOrFail('nginx.configtest');
             $this->cmd->runOrFail('nginx.reload');
         } catch (\Throwable $e) {
-            return response()->json(['error' => 'Erro: ' . $e->getMessage()], 500);
+            \Illuminate\Support\Facades\Log::error('Erro ao atualizar segurança do site', [
+                'site'      => $site->id,
+                'exception' => $e->getMessage(),
+            ]);
+            return response()->json(['error' => 'Erro ao atualizar configurações de segurança.'], 500);
         }
 
         return response()->json(['message' => 'Segurança atualizada e Nginx recarregado.']);

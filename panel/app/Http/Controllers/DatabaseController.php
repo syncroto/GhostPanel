@@ -90,6 +90,8 @@ class DatabaseController extends Controller
 
     public function store(Request $request)
     {
+        if (!auth()->user()->isAdmin()) abort(403);
+
         $validated = $request->validate([
             'name'     => ['required', 'string', 'max:64', 'regex:/^[a-zA-Z0-9_]+$/'],
             'username' => ['required', 'string', 'max:32', 'regex:/^[a-zA-Z0-9_]+$/'],
@@ -147,6 +149,8 @@ class DatabaseController extends Controller
 
     public function destroy(Database $database)
     {
+        if (!auth()->user()->isAdmin()) abort(403);
+
         $rootPass = config('gpanel.mysql_root_password', '');
 
         try {
@@ -167,6 +171,8 @@ class DatabaseController extends Controller
 
     public function resetPassword(Request $request, Database $database)
     {
+        if (!auth()->user()->isAdmin()) abort(403);
+
         $request->validate(['password' => 'required|string|min:8']);
         $rootPass = config('gpanel.mysql_root_password', '');
 

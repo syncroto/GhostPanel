@@ -13,13 +13,15 @@ class CronJobController extends Controller
 
     public function store(Request $request, Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
+
         $validated = $request->validate([
             'cron_m'  => ['required', 'string', 'max:20', 'regex:/^[\d\*,\/\-]+$/'],
             'cron_h'  => ['required', 'string', 'max:20', 'regex:/^[\d\*,\/\-]+$/'],
             'cron_d'  => ['required', 'string', 'max:20', 'regex:/^[\d\*,\/\-]+$/'],
             'cron_mo' => ['required', 'string', 'max:20', 'regex:/^[\d\*,\/\-]+$/'],
             'cron_dw' => ['required', 'string', 'max:20', 'regex:/^[\d\*,\/\-]+$/'],
-            'command' => ['required', 'string', 'max:500'],
+            'command' => ['required', 'string', 'max:500', 'regex:/^[^\r\n]+$/'],
             'run_as'  => ['required', 'string', 'max:64', 'regex:/^[a-zA-Z0-9_\-]+$/'],
         ]);
 
@@ -39,6 +41,8 @@ class CronJobController extends Controller
 
     public function destroy(Site $site, CronJob $cronJob)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
+        if ($cronJob->site_id !== $site->id) abort(404);
         $cronJob->delete();
         $this->writeCronFile($site);
         return response()->json(['message' => 'Cron job removido.']);
@@ -60,7 +64,9 @@ class CronJobController extends Controller
         $content .= "SHELL=/bin/bash\n";
         $content .= "PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin\n\n";
         foreach ($jobs as $job) {
-            $content .= "{$job->schedule} {$job->run_as} {$job->command}\n";
+            // Remove qualquer newline residual do comando para evitar injeção de linhas no crontab
+            $safeCommand = str_replace(["\r", "\n"], '', $job->command);
+            $content .= "{$job->schedule} {$job->run_as} {$safeCommand}\n";
         }
 
         $tmp = '/tmp/gpanel-cron-' . $site->id . '-' . time();

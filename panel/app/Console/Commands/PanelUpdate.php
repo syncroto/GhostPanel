@@ -180,7 +180,7 @@ class PanelUpdate extends Command
     {
         $output   = [];
         $exitCode = 0;
-        exec("cd {$dir} && {$command}", $output, $exitCode);
+        exec('cd ' . escapeshellarg($dir) . ' && ' . $command, $output, $exitCode);
         return [implode("\n", $output), $exitCode];
     }
 }

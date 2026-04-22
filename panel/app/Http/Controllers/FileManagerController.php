@@ -244,17 +244,34 @@ class FileManagerController extends Controller
 
     private function safePath(string $input): string|false
     {
-        // Resolve path (handle non-existing paths too)
+        // Resolve caminho já existente via realpath (imune a traversal)
         $resolved = realpath($input);
-        if (!$resolved) {
-            // For non-existing paths (create/touch), normalize manually
-            $normalized = '/' . implode('/', array_filter(explode('/', str_replace('..', '', $input))));
-        } else {
-            $normalized = $resolved;
+        if ($resolved) {
+            foreach (self::ALLOWED_ROOTS as $root) {
+                if (str_starts_with($resolved, $root . '/') || $resolved === $root) {
+                    return $resolved;
+                }
+            }
+            return false;
         }
 
+        // Para caminhos não existentes (create/mkdir/touch):
+        // Resolve o diretório pai via realpath e concatena apenas o basename
+        $parentResolved = realpath(dirname($input));
+        if (!$parentResolved) {
+            return false;
+        }
+
+        $basename = basename($input);
+        // Rejeita componentes de navegação
+        if ($basename === '' || $basename === '.' || $basename === '..') {
+            return false;
+        }
+
+        $normalized = $parentResolved . '/' . $basename;
+
         foreach (self::ALLOWED_ROOTS as $root) {
-            if (str_starts_with($normalized, $root)) {
+            if (str_starts_with($normalized, $root . '/') || $normalized === $root) {
                 return $normalized;
             }
         }

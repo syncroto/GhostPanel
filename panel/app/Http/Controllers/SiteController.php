@@ -111,6 +111,7 @@ class SiteController extends Controller
 
     public function destroy(Site $site)
     {
+        if (!auth()->user()->isAdmin()) abort(403);
         try {
             DeleteSiteJob::dispatchSync($site);
         } catch (\Throwable $e) {
@@ -128,6 +129,7 @@ class SiteController extends Controller
 
     public function restart(Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
         try {
             match ($site->type) {
                 'php', 'wordpress' => $this->cmd->runOrFail('phpfpm.reload', ['version' => $site->php_version]),
@@ -143,6 +145,7 @@ class SiteController extends Controller
 
     public function toggleSsl(Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
         try {
             if ($site->ssl_enabled) {
                 $this->cmd->runOrFail('ssl.revoke', ['domain' => $site->domain]);
@@ -196,6 +199,7 @@ class SiteController extends Controller
 
     public function vhost(Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
         $content = '';
         if ($site->nginx_config_path && file_exists($site->nginx_config_path)) {
             $content = file_get_contents($site->nginx_config_path);
@@ -206,6 +210,7 @@ class SiteController extends Controller
     // API JSON para o editor inline na aba Nginx
     public function vhostJson(Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
         $content = '';
         if ($site->nginx_config_path && file_exists($site->nginx_config_path)) {
             $content = file_get_contents($site->nginx_config_path);
@@ -219,10 +224,16 @@ class SiteController extends Controller
 
     public function vhostSave(Request $request, Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
+
         $request->validate(['content' => 'required|string']);
 
         if (!$site->nginx_config_path) {
             return back()->withErrors(['content' => 'Caminho Nginx não configurado para este site.']);
+        }
+
+        if (!str_starts_with($site->nginx_config_path, '/etc/nginx/sites-available/')) {
+            abort(403, 'Caminho Nginx inválido.');
         }
 
         $tmpFile = '/tmp/gpanel-vhost-' . $site->id . '-' . time();
@@ -246,10 +257,16 @@ class SiteController extends Controller
     // API JSON para salvar vhost inline
     public function vhostSaveJson(Request $request, Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
+
         $request->validate(['content' => 'required|string']);
 
         if (!$site->nginx_config_path) {
             return response()->json(['error' => 'Caminho Nginx não configurado para este site.'], 422);
+        }
+
+        if (!str_starts_with($site->nginx_config_path, '/etc/nginx/sites-available/')) {
+            return response()->json(['error' => 'Caminho Nginx inválido.'], 403);
         }
 
         $tmpFile = '/tmp/gpanel-vhost-' . $site->id . '-' . time();
@@ -276,6 +293,7 @@ class SiteController extends Controller
 
     public function logs(Site $site)
     {
+        if (!auth()->user()->canAccessSite($site)) abort(403);
         return view('sites.logs', compact('site'));
     }
 }

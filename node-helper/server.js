@@ -62,15 +62,15 @@ wss.on('connection', (ws, req) => {
 //  Terminal web interativo (node-pty)
 // ─────────────────────────────────────────────────────────────────────────── //
 function handleTerminal(ws, url) {
-    // Parâmetros do terminal
-    const cols     = parseInt(url.searchParams.get('cols')  || '120', 10);
-    const rows     = parseInt(url.searchParams.get('rows')  || '30',  10);
+    // Parâmetros do terminal — limita cols e rows a intervalos seguros
+    const cols     = Math.min(Math.max(parseInt(url.searchParams.get('cols') || '120', 10), 20), 220);
+    const rows     = Math.min(Math.max(parseInt(url.searchParams.get('rows') || '30',  10), 5),  60);
     const sitePath = url.searchParams.get('path') || '/var/www/sites';
 
-    // Valida o caminho — aceita qualquer path absoluto válido (painel de gerenciamento)
+    // Valida o caminho — aceita apenas caminhos dentro de /var/www/sites
     const resolvedPath = path.resolve(sitePath);
-    if (!resolvedPath.startsWith('/')) {
-        ws.send(JSON.stringify({ type: 'error', message: 'Caminho inválido.' }));
+    if (!resolvedPath.startsWith('/var/www/sites/') && resolvedPath !== '/var/www/sites') {
+        ws.send(JSON.stringify({ type: 'error', message: 'Caminho não permitido.' }));
         ws.close();
         return;
     }
